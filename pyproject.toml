@@ -1,0 +1,90 @@
+[project]
+name = "mathlib"
+version = "0.1.0"
+description = "Test math lib"
+authors = [{ name = "Marcin Pilarczyk", email = "marcinpilarczyk@me.com" }]
+dependencies = []
+requires-python = ">=3.7"
+readme = "README.md"
+license = { text = "MIT" }
+
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
+
+[tool.pdm]
+distribution = true
+
+[tool.pdm.scripts]
+lint = "ruff check ."
+fmt = "ruff check . --fix"
+test = "pytest ./tests"
+test-cov = "pytest ./tests --cov=mathlib --cov-report term-missing --cov-fail-under=100"
+doc = "mkdocs build"
+
+[tool.pdm.dev-dependencies]
+test = ["pytest>=7.4.4", "pytest-cov>=4.1.0"]
+lint = ["ruff>=0.3.3", "pylint>=2.13.9"]
+doc = [
+    "mkdocs>=1.5.3",
+    "mkdocstrings[python]>=0.22.0",
+    "mkdocs-material>=9.2.7",
+]
+
+[tool.ruff]
+line-length = 120
+fix = true
+
+[tool.ruff.lint]
+extend-select = [
+    "N",     # pep8-naming (N)
+    "F",     # Pyflakes (F)
+    "E",     # pycodestyle (E)
+    "W",     # pycodestyle (W)
+    "I",     # isort (I)
+    "D",     # pydocstyle (D)
+    "UP",    # pyupgrade (UP)
+    "ANN",   # flake8-annotations (ANN)
+    "ASYNC", # flake8-async (ASYNC)
+    "S",     # flake8-bandit (S)
+    "BLE",   # flake8-blind-except (BLE)
+    "B",     # flake8-bugbear (B)
+    "A",     # flake8-builtins (A)
+    "COM",   # flake8-commas (COM)
+    "CPY",   # flake8-copyright (CPY)
+    "C4",    # flake8-comprehensions (C4)
+    "EM",    # flake8-errmsg (EM)
+    "G",     # flake8-logging-format (G)
+    "INP",   # flake8-no-pep420 (INP)
+    "PYI",   # flake8-pyi (PYI)
+    "PT",    # flake8-pytest-style (PT)
+    "Q",     # flake8-quotes (Q)
+    "RET",   # flake8-return (RET)
+    "SLF",   # flake8-self (SLF)
+    "TCH",   # flake8-type-checking (TCH)
+    "ARG",   # flake8-unused-arguments (ARG)
+    "PTH",   # flake8-use-pathlib (PTH)
+    "PL",    # Pylint (PL)
+    "TRY",   # tryceratops (TRY)
+    "FLY",   # flynt (FLY)
+    "PERF",  # Perflint (PERF)
+    "FURB",  # refurb (FURB)
+    "LOG",   # flake8-logging (LOG)
+    "RUF",   # Ruff-specific rules (RUF)
+]
+fixable = ["ALL"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.per-file-ignores]
+"__init__.py" = ["F401"]
+"tests/**/*.py" = [
+    "S101",    # asserts allowed in tests...
+    "ARG",     # Unused function args -> fixtures nevertheless are functionally relevant...
+    "FBT",     # Don't care about booleans as positional arguments in tests, e.g. via @pytest.mark.parametrize()
+    "PLR2004", # Magic value used in comparison, ...
+    "S311",    # Standard pseudo-random generators are not suitable for cryptographic purposes
+    "ANN201",
+    "D103",
+]
