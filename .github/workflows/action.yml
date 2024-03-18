@@ -15,8 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Setup PDM
-        uses: ./
-        id: setup-pdm
+      - uses: pdm-project/setup-pdm@v3
         with:
           python-version: ${{ matrix.python-version }}
           cache: true
