@@ -13,24 +13,21 @@ jobs:
         os: [windows-latest, ubuntu-latest, macos-latest]
     name: Test the action
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Setup PDM
-      - uses: pdm-project/setup-pdm@v3
+        uses: pdm-project/setup-pdm@v4
         with:
           python-version: ${{ matrix.python-version }}
           cache: true
           allow-python-prereleases: true
-
       - name: Check output
         run: |
           echo ${{ steps.setup-pdm.outputs.pdm-bin }}
           echo ${{ steps.setup-pdm.outputs.pdm-version }}
           echo ${{ steps.setup-pdm.outputs.python-path }}
           echo ${{ steps.setup-pdm.outputs.python-version }}
-
       - name: Install dependencies
         run: pdm install -v && pdm info
-
       - name: Verify python version
         run: pdm run test
         env:
