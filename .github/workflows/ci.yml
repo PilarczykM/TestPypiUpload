@@ -10,7 +10,7 @@ jobs:
     strategy:
       matrix:
         python-version: ['3.8', '3.9', '3.10', '3.11', '3.12']
-        os: [windows-latest]
+        os: [windows-latest, ubuntu-latest, macos-latest]
     name: Test the action
     steps:
       - uses: actions/checkout@v4
