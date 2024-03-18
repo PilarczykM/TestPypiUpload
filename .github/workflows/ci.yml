@@ -1,6 +1,6 @@
 on:
   push:
-    branches: [main-2]
+    branches: [main]
 
 name: Test Action
 
