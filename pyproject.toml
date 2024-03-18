@@ -1,6 +1,6 @@
 [project]
 name = "mathlib-test"
-version = "0.1.0"
+version = "0.1.1"
 description = "Test math lib"
 authors = [{ name = "Marcin Pilarczyk", email = "marcinpilarczyk@me.com" }]
 dependencies = []
