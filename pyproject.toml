@@ -1,5 +1,5 @@
 [project]
-name = "mathlib"
+name = "mathlib-test"
 version = "0.1.0"
 description = "Test math lib"
 authors = [{ name = "Marcin Pilarczyk", email = "marcinpilarczyk@me.com" }]
