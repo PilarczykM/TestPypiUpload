@@ -22,6 +22,10 @@ jobs:
           allow-python-prereleases: true
       - name: Install dependencies
         run: pdm install -v
+      - name: Verify python lint
+        run: pdm run lint
+        env:
+          PYTHON_VERSION: ${{ matrix.python-version }}
       - name: Verify python test
         run: pdm run test
         env:
